@@ -34,9 +34,9 @@ export var cosObliq = Math.cos (obliquity)
 // Get equatorial coords from ecliptic coords
 export function equatFromEclipt (x, y, z) {
     var result = [
-        150e9 * x,
-        150e9 * (cosObliq * y - sinObliq * z),
-        150e9 * (sinObliq * y + cosObliq * z)
+        x,
+        cosObliq * y - sinObliq * z,
+        sinObliq * y + cosObliq * z
     ];
     return result;
 }

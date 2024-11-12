@@ -180,15 +180,8 @@ export function getNormalized (vec) {
 
 // Source: https://en.wikipedia.org/wiki/Stereographic_projection
 export function getStereographicProjection (bodyVec, imageDist) {
-    if (bodyVec [2] < 0) {
-        return None;
-    }
-
-    var unitVec = getNormalized (bodyVec);
-    var result = [
-        400 * unitVec [0] / (1 - unitVec [2]),
-        400 * unitVec [1] / (1 - unitVec [2])
-    ];
-    // print (result)
-    return result;
+    return [
+        bodyVec [0] / (1 - bodyVec [2]),
+        bodyVec [1] / (1 - bodyVec [2])
+    ]
 }

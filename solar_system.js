@@ -16,7 +16,7 @@ var mPerAu = 149597871e14
 
 export class Planet {
     constructor (solarSystem, name, basicOrbitElements, extraOrbitElements, period, radius, color) {
-        this.name = name;
+        this.name = name
         this.solarSystem = solarSystem;
         this.basicOrbitElements = basicOrbitElements;
         this.extraOrbitElements = extraOrbitElements;
@@ -35,10 +35,9 @@ export class Planet {
 
     setEarthViewPosition () {
 /*
-        rotatedPosition = tf.matVecMul (this.solarSystem.planetarium.rotZyxMat, tf.vecSub (this.equatPosition, this.solarSystem.earth.equatPosition));
+        var rotatedPosition = tf.matVecMul (this.solarSystem.planetarium.rotZyxMat, tf.vecSub (this.equatPosition, this.solarSystem.earth.equatPosition));
 */
         var rotatedPosition = tf.matVecMul ([[1, 0, 0], [0, 1, 0], [0, 0, 1]], tf.vecSub (this.equatPosition, this.solarSystem.earth.equatPosition));
-
         this.earthViewPosition = tf.getStereographicProjection (rotatedPosition, this.solarSystem.getViewDistance ());
     }
 
@@ -184,14 +183,24 @@ export class SolarSystem {
             alert (555);
         }
     }
-
+/*
     showPositions () {
         for (let planet of this.planets) {
-            let x = planet.equatPosition [0]/ 5000000000 + 300;
-            let y = planet.equatPosition [1]/ 5000000000 + 700;
-            var square = new cv.Square (x, y, 10);
+            var x = planet.equatPosition [0]/ 5000000000 + 300;
+            var y = planet.equatPosition [1]/ 5000000000 + 700;
+            var square = new cv.Square (x, y, 10, planet.color);
             square.draw ();
-            alert (planet.name + " " + x + " " + y);
+            // alert (planet.name + " " + x + " " + y);
+        }
+    }
+*/
+    showPositions () {
+        for (let planet of this.planets) {
+            var x = 20 * planet.equatPosition [0] + 300;
+            var y = 20 * planet.equatPosition [1] + 700;
+            var square = new cv.Square (0, 0, 10, planet.color);
+            square.draw ();
+            // alert (planet.name + " " + x + " " + y);
         }
     }
 }
