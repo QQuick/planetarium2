@@ -10,9 +10,9 @@ import * as cv from "./canvas.js";
 import * as tf from "./transforms.js";
 import * as pc from "./planet_catalog.js";
 
+var scaleFactor = 15;
 
-
-var mPerAu = 149597871e14
+var mPerAu = 149597871e14;
 
 export class Planet {
     constructor (solarSystem, name, basicOrbitElements, extraOrbitElements, period, radius, color) {
@@ -183,22 +183,10 @@ export class SolarSystem {
             alert (555);
         }
     }
-/*
+
     showPositions () {
         for (let planet of this.planets) {
-            var x = planet.equatPosition [0]/ 5000000000 + 300;
-            var y = planet.equatPosition [1]/ 5000000000 + 700;
-            var square = new cv.Square (x, y, 10, planet.color);
-            square.draw ();
-            // alert (planet.name + " " + x + " " + y);
-        }
-    }
-*/
-    showPositions () {
-        for (let planet of this.planets) {
-            var x = 20 * planet.equatPosition [0] + 300;
-            var y = 20 * planet.equatPosition [1] + 700;
-            var square = new cv.Square (0, 0, 10, planet.color);
+            var square = new cv.Square (scaleFactor * planet.equatPosition [0], scaleFactor * planet.equatPosition [1], 10, planet.color);
             square.draw ();
             // alert (planet.name + " " + x + " " + y);
         }
@@ -213,4 +201,5 @@ var solarSystem = new SolarSystem (getViewDistance)
 solarSystem.setEquatPositions ()
 solarSystem.setEarthViewPositions ()
 // solarSystem.printPositions ()
-solarSystem.showPositions ()
+solarSystem.showPositions ()            var x = 15 * planet.equatPosition [0];
+            var y = 15 * planet.equatPosition [1];

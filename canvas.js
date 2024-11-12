@@ -16,7 +16,7 @@ export class Square {
 
     draw () {
         context.fillStyle = this.color;
-        context.fillRect (this.x - this.width / 2, this.y - this.width / 2, this.width, this.width);
+        context.fillRect (canvas.width / 2 + this.x - this.width / 2, canvas.height / 2 - this.y - this.width / 2, this.width, this.width);
     }
 }
 
@@ -30,7 +30,7 @@ export class Rectangle extends Square {
 
     draw () {
         context.fillStyle = this.color;
-        context.fillRect (this.x - this.width / 2, this.y - this.height / 2, this.width, this.height);
+        context.fillRect (canvas.width / 2 + this.x - this.width / 2, canvas.height / 2 - this.y - this.height / 2, this.width, this.height);
     }
 }
 
