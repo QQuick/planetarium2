@@ -30,7 +30,7 @@ export class Planet {
     }
 
     setEquatOrbit () {
-        this.equatOrbit = this.computeEquatOrbit (180);
+        this.equatOrbit = [...this.computeEquatOrbit (180)];
     }
 
     setEarthViewPosition () {
@@ -70,6 +70,8 @@ export class Planet {
         // var t_0 = ut.julianDayNr (dt.datetime (*this.solarSystem.getYmdHms ())) - ut.julianDayNr (dt.datetime (2000, 1, 1, 0, 0, 0))
         // var t_0 = ut.julianDayNr (dt.datetime.now ()) - ut.julianDayNr (dt.datetime (2000, 1, 1, 0, 0, 0));
         var t_0 = 0;
+
+        var equatOrbit = [];
 
         for (let i = 0; i < orbitSteps; i++) {
             var t = t_0 + i * this.period / orbitSteps;
@@ -113,8 +115,6 @@ export class Planet {
             var xAccent = a * (Math.cos (ut.radFromDeg (E)) - e);
             var yAccent = a * Math.sqrt (1 - e * e) * Math.sin (ut.radFromDeg (E));
             var zAccent = 0;
-
-            var equatOrbit = [];
 
             equatOrbit.push (ut.equatFromEclipt (
                 (Math.cos (ut.radFromDeg (om)) * Math.cos (ut.radFromDeg (Om)) - Math.sin (ut.radFromDeg (om)) * Math.sin (ut.radFromDeg (Om)) * Math.cos (ut.radFromDeg (I))) * xAccent +
@@ -174,21 +174,21 @@ export class SolarSystem {
         }
     }
 
-    printPositions () {
-        for (let planet of this.planets) {
-            alert (444);
-            alert (planet.name);
-            alert (planet.equatPosition);
-            // alert (planet.earthViewPosition);
-            alert (555);
-        }
-    }
 
     showPositions () {
         for (let planet of this.planets) {
             var square = new cv.Square (scaleFactor * planet.equatPosition [0], scaleFactor * planet.equatPosition [1], 10, planet.color);
             square.draw ();
-            // alert (planet.name + " " + x + " " + y);
+        }
+    }
+
+    showOrbits () {
+        for (let planet of this.planets) {
+            var count = 0;
+            for (let position of planet.equatOrbit) {
+                var square = new cv.Square (scaleFactor * position [0], scaleFactor * position [1], 10, planet.color);
+                square.draw ();
+            }
         }
     }
 }
@@ -197,8 +197,9 @@ function getViewDistance () {
     return 0.8;
 }
 
-var solarSystem = new SolarSystem (getViewDistance)
-solarSystem.setEquatPositions ()
-solarSystem.setEarthViewPositions ()
-// solarSystem.printPositions ()
-solarSystem.showPositions ()
+var solarSystem = new SolarSystem (getViewDistance);
+solarSystem.setEquatPositions ();
+solarSystem.showPositions ();
+
+solarSystem.setEquatOrbits ();
+solarSystem.showOrbits ();
