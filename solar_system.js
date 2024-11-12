@@ -201,5 +201,4 @@ var solarSystem = new SolarSystem (getViewDistance)
 solarSystem.setEquatPositions ()
 solarSystem.setEarthViewPositions ()
 // solarSystem.printPositions ()
-solarSystem.showPositions ()            var x = 15 * planet.equatPosition [0];
-            var y = 15 * planet.equatPosition [1];
+solarSystem.showPositions ()
